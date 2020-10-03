@@ -78,27 +78,33 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.posterView.af_setImage(withURL: posterUrl!)
   
-        
-        
-        
-        
-        
-        
-        
-        
-        
         return cell
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        //sender is the cell that was tapped on
+        
+        //P2 first task: find the selected movie
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let movie = movies[indexPath.row]
+        
+        //P2 second task: pass the selected movie to the details controller
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = movie //second movie referring to let movie earlierr
+        
+        //we dont want to have the movie still selected after back on the scrolling so:
+        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
-    */
+
 
 }
